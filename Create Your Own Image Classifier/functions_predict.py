@@ -47,7 +47,7 @@ def process_image(image):
     means = [0.485, 0.456, 0.406]
     stds = [0.229, 0.224, 0.225]
     
-    # TODO: Process a PIL image for use in a PyTorch model
+    # Process a PIL image for use in a PyTorch model
     image_transforms = transforms.Compose([transforms.Resize(resized_size),
                                      transforms.CenterCrop(cropped_size), 
                                      transforms.ToTensor()])
