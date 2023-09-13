@@ -1,15 +1,3 @@
-''' 1. Train
-Train a new network on a data set with train.py
-
-Basic usage: python train.py data_directory
-Prints out training loss, validation loss, and validation accuracy as the network trains
-Options:
-Set directory to save checkpoints: python train.py data_dir --save_dir save_directory
-Choose architecture: python train.py data_dir --arch "vgg13"
-Set hyperparameters: python train.py data_dir --learning_rate 0.01 --hidden_units 512 --epochs 20
-Use GPU for training: python train.py data_dir --gpu
-''' 
-
 import torch
 from torch import nn
 from torch import optim
@@ -34,14 +22,14 @@ from torch.autograd import Variable
 
 import argparse
 
-# You may have one function for data pre-processing which takes a path as an argument and returns all the loaders.
+
 def load_data(data_dir = './flowers'):
     
     data_dir = str(data_dir).strip('[]').strip("'")
     train_dir = data_dir + '/train'
     valid_dir = data_dir + '/valid'
     test_dir = data_dir + '/test'
-    # TODO: Define your transforms for the training, validation, and testing sets
+    # Defining your transforms for the training, validation, and testing sets
     
     # For all three sets you'll need to normalize the means [0.485, 0.456, 0.406] and standard deviations [0.229, 0.224, 0.225] 
     # data_transforms = 
@@ -69,7 +57,7 @@ def load_data(data_dir = './flowers'):
                                           transforms.Normalize(means, stds)])
     
     
-    # TODO: Load the datasets with ImageFolder
+    #Loading the datasets with ImageFolder
     
     train_data = datasets.ImageFolder(train_dir, transform = train_transforms)
     validate_data = datasets.ImageFolder(valid_dir, transform = validate_transforms)
@@ -77,7 +65,7 @@ def load_data(data_dir = './flowers'):
     
     image_data = [train_data, validate_data, test_data] 
     
-    # TODO: Using the image datasets and the trainforms, define the dataloaders
+    #Using the image datasets and the trainforms, define the dataloaders
     
     batch_size = 60
     
@@ -135,7 +123,7 @@ def build_model(arch = 'vgg16', middle_features = 1024, learning_rate = 0.01, de
 
 # One function to train the model
 def train_model(model, criterion, optimizer, validate_loader, train_loader, use = 'gpu', epochs = 10):
-    # TODO: Using the image datasets and the trainforms, define the dataloaders
+    # Using the image datasets and the trainforms, define the dataloaders
 
     #batch_size = 60
 
